@@ -1,0 +1,16 @@
+name: jq
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - run: brew install libtool oniguruma
+      - run: git clone https://github.com/stedolan/jq.git .
+      - run: autoreconf -iv
+      - run: ./configure --disable-dependency-tracking --disable-silent-rules --disable-maintainer-mode --prefix=$(pwd)/_build
+      - run: make install
+      - uses: actions/upload-artifact@v2
+        with:
+          name: jq
+          path: _build/bin/jq
