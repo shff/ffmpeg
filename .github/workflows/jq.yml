@@ -9,7 +9,7 @@ jobs:
       - run: git clone https://github.com/stedolan/jq.git .
       - run: autoreconf -iv
       - run: ./configure --disable-dependency-tracking --disable-silent-rules --disable-maintainer-mode --prefix=$(pwd)/_build
-      - run: make install
+      - run: CFLAGS=-Wno-deprecated-declarations make install
       - uses: actions/upload-artifact@v2
         with:
           name: jq
