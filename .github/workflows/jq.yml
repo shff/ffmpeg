@@ -6,6 +6,7 @@ jobs:
     runs-on: macos-latest
     env:
       CFLAGS: -Wno-deprecated-declarations -Wno-implicit-function-declaration
+      LDFLAGS: -all-static
     steps:
       - run: brew install automake libtool oniguruma
       - run: git clone https://github.com/stedolan/jq.git .
