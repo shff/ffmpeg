@@ -5,12 +5,13 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-      CFLAGS: -Wno-deprecated-declarations -Wno-implicit-function-declaration
+      CFLAGS: -Os -static -no-pie -Wno-deprecated-declarations -Wno-implicit-function-declaration
+      CXXFLAGS: -Os -static -no-pie
     steps:
       - run: brew install automake libtool oniguruma
       - run: git clone https://github.com/stedolan/jq.git .
       - run: autoreconf -iv
-      - run: ./configure --enable-shared=no --enable-static=yes --disable-dependency-tracking --disable-silent-rules --disable-maintainer-mode --prefix=$(pwd)/_build
+      - run: ./configure --disable-docs --enable-all-static --enable-shared=no --enable-static=yes --disable-dependency-tracking --disable-silent-rules --disable-maintainer-mode --prefix=$(pwd)/_build
       - run: make install
       - uses: actions/upload-artifact@v2
         with:
