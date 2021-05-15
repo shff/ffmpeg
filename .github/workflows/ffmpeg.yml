@@ -12,33 +12,7 @@ jobs:
     steps:
       - run: git clone https://github.com/markus-perl/ffmpeg-build-script.git
       - run: cd ffmpeg-build-script && ./build-ffmpeg --build
-
-      # - run: mkdir $PREFIX
-
-      # - run: curl -O http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
-      # - run: tar xzvf yasm-1.3.0.tar.gz 2> /dev/null
-      # - run: cd yasm-1.3.0 && ./configure --prefix=$PREFIX && make install
-
-      # - run: curl -O https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/nasm-2.15.05.tar.bz2
-      # - run: tar xzvf nasm-2.15.05.tar.bz2 2> /dev/null
-      # - run: cd nasm-2.15.05 && ./configure --prefix=$PREFIX && make install
-
-      # - run: curl -O https://dl.cihar.com/enca/enca-1.19.tar.xz
-      # - run: tar xzvf enca-1.19.tar.xz 2> /dev/null
-      # - run: cd enca-1.19 && ./configure --prefix=$PREFIX --disable-shared --enable-static && make install
-
-      # - run: git clone https://aomedia.googlesource.com/aom --depth=1
-      # - run: mkdir aom_build && cd aom_build && cmake -DENABLE_TESTS=0 -DCMAKE_INSTALL_PREFIX:PATH=$PREFIX -DLIBTYPE=STATIC ../aom && make install
-
-      # - run: curl -O https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.2.0alpha1.tar.gz
-      # - run: tar xzvf libtheora-1.2.0alpha1.tar.gz 2> /dev/null
-      # - run: cd libtheora-1.2.0alpha1 && ./configure --prefix=$PREFIX --with-ogg-libraries=$PREFIX/lib --with-ogg-includes=$PREFIX/include/ --with-vorbis-libraries=$PREFIX/lib --with-vorbis-includes=$PREFIX/include/ --enable-static --disable-shared --disable-oggtest --disable-vorbistest --disable-examples --disable-asm
-
-      # - run: curl -O http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-      # - run: tar xzvf ffmpeg-snapshot.tar.bz2 2> /dev/null
-      # - run: cd ffmpeg && ./configure --cc=/usr/bin/clang --prefix=$PREFIX --extra-cflags="-fno-stack-check" --arch=arm64 --cc=/usr/bin/clang --enable-fontconfig --enable-libaom --enable-gpl --enable-libopus --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libass --enable-libfreetype --enable-libtheora --enable-libvorbis --enable-libsnappy --enable-libvidstab --enable-version3 --pkg-config-flags=--static --disable-ffplay --enable-postproc --enable-nonfree --enable-neon --enable-runtime-cpudetect --disable-indev=qtkit --disable-indev=x11grab_xcb && make install
-
       - uses: actions/upload-artifact@v2
         with:
           name: ffmpeg
-          path: workspace/bin/ffmpeg
+          path: ffmpeg-build-script/workspace/bin/ffmpeg
